@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="dist/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="fullpage">
+    <div class="section active" id="section0">
+        <div class="video-background">
+            <video muted controls="false" data-autoplay id="video">
+                <source src="media/logo_animation.mp4" type="video/mp4">
+            </video> 
+        </div>
+    </div>
+	<div class="section" id="section1">
+	    <div class="slide active"><h1>ЧЕМ МЫ ЗАНИМАЕМСЯ?</h1></div>
+	    <div class="slide">
+            <article>
+                <h1>STRETCHING</h1>
+                <p>Не просто растяжка. Тренировки направлены на развитие гибкости ног, спины, рук и повышение подвижности суставов и связок. Тренировки идеально подходят для того, чтобы снять напряжение с мышц и расслабиться.</p>
+            </article>
+        </div>
+        <div class="slide"><h1>TOP STRETCHING</h1></div>
+        <div class="slide"><h1>FUNCTIONAL</h1></div>
+        <div class="slide"><h1>FIT SPINE</h1></div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript" src="dist/fullpage.js"></script>
+<script type="text/javascript">
+	var myFullpage = new fullpage('#fullpage', {
+		sectionsColor: ['#030303', '#030303']
+	});
+</script>
+<script type="text/javascript">
+    var vid = document.getElementById("video");
+    vid.onended = function() {
+        vid.style.opacity = "0";
+    };
+</script>
+</body>
+</html>
