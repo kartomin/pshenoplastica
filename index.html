@@ -4,46 +4,69 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="dist/fullpage.css" />
-    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />    
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="dist/fullpage.js"></script>
+    <script type="text/javascript" src="dist/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
 <div id="fullpage">
-    <div class="section active" id="section0">
-        <div class="video-background">
-            <video muted controls="false" data-autoplay id="video">
-                <source src="media/logo_animation.mp4" type="video/mp4">
-            </video> 
-        </div>
+    <div class="section" id="section0">
+        <video id="background-video" muted data-autoplay>
+            <source src="media/animation.mp4" type="video/mp4">
+            <source src="media/animation.webm" type="video/webm">
+        </video>
+        <img src="media/logo_orig.png" id="background-image">
     </div>
 	<div class="section" id="section1">
-	    <div class="slide active"><h1>ЧЕМ МЫ ЗАНИМАЕМСЯ?</h1></div>
-	    <div class="slide">
-            <article>
+	    <div class="slide" id="slide1">
+            <div class="description" id="description1">
                 <h1>STRETCHING</h1>
                 <p>Не просто растяжка. Тренировки направлены на развитие гибкости ног, спины, рук и повышение подвижности суставов и связок. Тренировки идеально подходят для того, чтобы снять напряжение с мышц и расслабиться.</p>
-            </article>
+            </div>
         </div>
-        <div class="slide"><h1>TOP STRETCHING</h1></div>
-        <div class="slide"><h1>FUNCTIONAL</h1></div>
-        <div class="slide"><h1>FIT SPINE</h1></div>
-	</div>
+	    <div class="slide" id="slide2">
+            <div class="description" id="description2">
+                <h1>FUNCTIONAL</h1>
+                <p>Направление, которое развивает одновременно ваши основные физические качества, укрепляет мышцы и учит чувствовать тело.</p>
+            </div>
+        </div>
+        <div class="slide" id="slide3"> 
+            <div class="description" id="description3">
+                <h1>FIT SPINE</h1>
+                <p>Программа, которая сделает твою спину здоровой. Если ты работаешь на сидячей работе или наоборот слишком много занимаешься спортом и перенапрягаешь мышцы спины, то fit spine - лучший выбор, чтобы избавиться от излишнего напряжения и болей.</p>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="section2">
+        <button class="btn" type="button" id="signup"><span>Запишись прямо сейчас!</span></button>
+    </div>
 </div>
 
-
-
-<script type="text/javascript" src="dist/fullpage.js"></script>
 <script type="text/javascript">
+    var finished_playing = false;
 	var myFullpage = new fullpage('#fullpage', {
-		sectionsColor: ['#030303', '#030303']
+        anchors: ['logo', 'about', 'signup'],
+		sectionsColor: ['#030203', '#030203', '#030203'],
+        afterLoad: function(origin, destination, direction) {
+            if (origin) {
+                if (destination.index === 1 && direction === "down" && finished_playing) {
+                    document.getElementById("background-image").style.opacity = 1;
+                }
+            }
+        }
 	});
 </script>
 <script type="text/javascript">
-    var vid = document.getElementById("video");
-    vid.onended = function() {
-        vid.style.opacity = "0";
+    document.getElementById("background-video").onended = function() {
+        fullpage_api.moveTo('about', 0);
+        document.getElementById("background-video").style.opacity = 0;
+        finished_playing = true;
     };
+    document.getElementById("signup").onclick = function() {
+        window.location='https://r516963.mobi.fitness/';
+    }
 </script>
 </body>
 </html>
